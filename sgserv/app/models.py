@@ -10,9 +10,9 @@ class Endereco(models.Model):
     cidade = models.CharField(max_length= 20)
     uf = models.CharField(max_length= 2)
     cep = models.IntegerField()
-    
+
     def __str__(self):
-        return (self.logradouro, self.bairro)
+        return (self.logradouro)
 
 class Cliente(models.Model):
     nome = models.CharField(max_length=30)
@@ -22,3 +22,18 @@ class Cliente(models.Model):
    
     def __str__(self):
         return self.nome
+
+class Fornecedor(models.Model):
+    nome = models.CharField(max_length=50)
+    CNPJ = models.BigIntegerField()
+    telefone = models.BigIntegerField()
+    email = models.EmailField()
+    endereco = models.ForeignKey(Endereco, on_delete=CASCADE)
+
+    def __str__(self):
+        return self.nome
+
+class Compromisso(models.Model):
+    data = models.DateField()
+    hora = models.TimeField()
+    descricao = models.TextField()
