@@ -37,3 +37,4 @@ class Compromisso(models.Model):
     data = models.DateField()
     hora = models.TimeField()
     descricao = models.TextField()
+    cliente = models.ForeignKey(Cliente, on_delete=CASCADE)

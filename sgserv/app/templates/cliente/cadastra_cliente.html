@@ -1,16 +1,27 @@
-<!DOCTYPE html>
-<html lang="en">
-    <meta charset="UTF-8">
-    <head>
-        <title>Cadastro de Cliente</title>
-    </head>
-    <body>
+{%extends 'base.html'%}
+
+{%block title%}
+Cadastro de Clientes
+{%endblock title%}
+
+
+{%block content%}
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                var elems = document.querySelectorAll('select');
+                var instances = M.FormSelect.init(elems);
+            });
+        </script>
         <form method="POST">{%csrf_token%}
-            {{form_cliente.as_p}}
+            {{form_cliente.as_p}}      
             <button type="submit" class="btn btn-primary">
                 Salvar
             </button>
+            <a href="{%url 'index'%}">
+                <button type="button" class="btn btn-primary">
+                    Voltar
+                </button>
+            </a>
+          
         </form>
-
-    </body>
-</html>
+{%endblock content%}

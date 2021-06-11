@@ -29,10 +29,10 @@ class CompromissoForm(ModelForm):
     class Meta:
         model = Compromisso
         fields = [ 
-            'data', 'hora', 'descricao',
+            'data', 'hora', 'descricao', 'cliente',
         ]
 
-def cadastra_endereco(request, template_name='cadastra_endereco.html'):
+def cadastra_endereco(request, template_name='endereco/cadastra_endereco.html'):
     form_endereco = EnderecoForm(request.POST or None)
     if form_endereco.is_valid():
         form_endereco.save()

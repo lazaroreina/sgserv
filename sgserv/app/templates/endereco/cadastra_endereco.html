@@ -1,19 +1,12 @@
 {%extends 'base.html'%}
 {%block title%}
-Cadastro de Fornecedor
+Cadastro de Endereço
 {%endblock title%}
 
 {%block content%}
-        <script>
-            document.addEventListener('DOMContentLoaded', function() {
-                var elems = document.querySelectorAll('select');
-                var instances = M.FormSelect.init(elems);
-            });
-        </script>
-
         <form method="POST">{%csrf_token%}
-            {{form_fornecedor.as_p}}
-            <button type="submit" class="btn btn-primary">
+            {{form_endereco.as_p}}
+            <button type="submit" class="btn btn-primay">
                 Salvar
             </button>
             <a href="{%url 'index'%}">
@@ -22,4 +15,5 @@ Cadastro de Fornecedor
                 </button>
             </a>
         </form>
+        
 {%endblock content%}

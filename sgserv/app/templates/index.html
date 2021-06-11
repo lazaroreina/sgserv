@@ -1,14 +1,31 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <title>Página Principal</title>
-    </head>
-    <body>
-        <li><a href="{% url 'cadastra_endereco' %}">Cadastra Endereco</a></li>
-        <li><a href="{% url 'cadastra_cliente' %}">Cadastra Cliente</a></li>
-        <li><a href="{% url 'cadastra_fornecedor' %}">Cadastra Fornecedor</a></li>
-        <li><a href="{% url 'cadastra_compromisso' %}">Cadastra Compromisso</a></li>
+{% extends 'base.html'%}
+
+{%block title%}
+Página Inicial
+{%endblock title%}
+
+{%block content%}
+        <br>
         
-    </body>
-</html>
+        <a href="{% url 'cadastra_endereco' %}" class="white">
+                <button type="button" class="btn btn-primary">
+                        Cadastra Endereco
+                </button>
+        </a>
+        <a href="{% url 'cadastra_cliente' %}" class="white">
+                <button type="button" class="btn btn-primary">
+                        Cadastra Cliente
+                </button>
+        </a>       
+        <a href="{% url 'cadastra_fornecedor' %}" class="white">
+                <button type="button" class="btn btn-primary">
+                        Cadastra Fornecedor
+                </button>
+        </a>
+        <a href="{% url 'cadastra_compromisso' %}" class="white">
+                <button type="button" class="btn btn-primary">
+                        Cadastra Compromisso
+                </button>
+        </a>
+        
+{%endblock content%}
