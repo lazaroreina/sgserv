@@ -51,7 +51,7 @@ def cadastra_endereco(request, template_name='endereco/cadastra_endereco.html'):
     form_endereco = EnderecoForm(request.POST or None)
     if form_endereco.is_valid():
         form_endereco.save()
-        return redirect('index')
+        return redirect('dashboard')
     return render(request, template_name, {'form_endereco': form_endereco})
 
 # Rotina de cadastro de clientes
@@ -60,7 +60,7 @@ def cadastra_cliente(request, template_name='cliente/cadastra_cliente.html'):
     form_cliente = ClienteForm(request.POST or None)
     if form_cliente.is_valid():
         form_cliente.save()
-        return redirect('index')
+        return redirect('dashboard')
     return render(request, template_name, {'form_cliente':form_cliente})
 
 # Rotina de listagem de clientes
@@ -81,7 +81,7 @@ def cadastra_fornecedor(request, template_name='fornecedor/cadastra_fornecedor.h
     form_fornecedor = FornecedorForm(request.POST or None)
     if form_fornecedor.is_valid():
         form_fornecedor.save()
-        return redirect('index')
+        return redirect('dashboard')
     return render(request, template_name, {'form_fornecedor': form_fornecedor})
 
 # Rotina de cadastro de compromisso
@@ -90,7 +90,7 @@ def cadastra_compromisso(request, template_name='compromisso/cadastra_compromiss
     form_compromisso = CompromissoForm(request.POST or None)
     if form_compromisso.is_valid():
         form_compromisso.save()
-        return redirect('index')
+        return redirect('dashboard')
     return render(request, template_name, {'form_compromisso':form_compromisso})
 
 # Rotina de construção de um dashboard
