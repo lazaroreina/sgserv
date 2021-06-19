@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+{%block title%}
+{%endblock title%}
+
+{%block content%}
+
+<div class="left row">
+   
+    <div class="col s4">
+        <ul class="collection">
+            <li><a href="{% url 'cadastra_compromisso'%}" class="colection-item">Cadastra Compromisso</a></li>
+            <li></li><a href="{% url 'lista_cliente'%}" class="colection-item">Lista Cliente</a></li>  
+            <li></li><a href="{% url 'cadastra_endereco'%}" class="colection-item">Cadastra Endereço</a></li> 
+            <li></li><a href="{% url 'cadastra_cliente'%}" class="colection-item">Cadastra Cliente</a></li>  
+            <li></li><a href="{% url 'cadastra_fornecedor'%}" class="colection-item">Cadastra Fornecedor</a></li>
+        </ul>       
+    </div>
+
+    <div class="col s6">
+        <h5>Agenda de Serviços</h5>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Data</th>
+                    <th>Hora</th>
+                    <th>Cliente</th>
+                    <th>Descrição</th>
+                    <th>Ação</th>
+                </tr>
+            </thead>
+            <tbody>
+                {%for compromisso in compromisso%}
+                <tr>
+                    <td>{{compromisso.data}}</td>
+                    <td> {{compromisso.hora}}</td>
+                    <td>{{compromisso.cliente}}</td>
+                    <td>{{compromisso.descricao}}</td>
+                    <td>
+                        <a href="#">
+                            <i class="material-icons">search</i>
+                        </a>
+                        <a href="#">
+                            <i class="material-icons">edit</i>
+                        </a>
+                        <a href="#">
+                            <i class="material-icons">delete</i>
+                        </a>
+                    </td>
+                </tr>
+                {%endfor%}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+{%endblock content%}

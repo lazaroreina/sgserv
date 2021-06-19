@@ -18,11 +18,15 @@
     <nav class="teal lighten-1 navbar navbar-default">
         <div class="container-fluid">
             <div class="navbar-header">
-                <a class="brand-logo center">Gestão de Serviços</a>
+                <a class="brand-logo center">Sistema de Gestão de Serviços</a>
             </div>
 
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav">
+                <ul class="right nav navbar-nav">
+                    {% if request.user.is_authenticated %}
+                    <li>Olá {{request.user.username}}</li>
+                    <li><a href="{% url 'deslogar'%}">Logout</a></li>
+                    {% endif %}
                 </ul>
             </div>
         </div>

@@ -1,0 +1,47 @@
+{%extends 'base.html'%}
+
+{%block title%}
+Listagem de clientes
+{%endblock title%}
+
+{%block content%}
+<form method="GET">
+    <input type="text" name="busca" placeholder="Buscar cliente">
+    <button type="submit" class="btn btn-primary">
+        Buscar
+    </button>
+</form>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Nome</th>
+            <th>Telefone</th>
+            <th>Email</th>
+            <th>Ação</th>
+        </tr>
+    </thead>
+    <tbody>
+        {%for cliente in cliente%}
+        <tr>
+          <td>{{cliente.nome}}</td>  
+          <td>{{cliente.telefone}}</td>
+          <td>{{cliente.email}}</td>
+          <td>
+              <a href="#">
+                  <i class="material-icons">edit</i>
+              </a>
+              <a href="#">
+                  <i class="material-icons">delete</i>
+              </a>
+          </td>
+        </tr>
+        {%endfor%}
+    </tbody>
+</table>
+<a href="{% url 'dashboard' %}">
+    <button type="button" class="btn btn-primary">
+        Voltar
+    </button>
+</a>
+{%endblock content%}
