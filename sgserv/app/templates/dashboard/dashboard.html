@@ -5,19 +5,21 @@
 
 {%block content%}
 
-<div class="left row">
+<div class="left row col s20">
    
-    <div class="col s4">
+    <div class="col s20">
         <ul class="collection">
             <li><a href="{% url 'cadastra_compromisso'%}" class="colection-item">Cadastra Compromisso</a></li>
             <li></li><a href="{% url 'lista_cliente'%}" class="colection-item">Lista Cliente</a></li>  
+            <li></li><a href="{% url 'cadastra_contasapagar'%}" class="colection-item">Cadastra Contas a Pagar</a></li>
             <li></li><a href="{% url 'cadastra_endereco'%}" class="colection-item">Cadastra Endereço</a></li> 
             <li></li><a href="{% url 'cadastra_cliente'%}" class="colection-item">Cadastra Cliente</a></li>  
             <li></li><a href="{% url 'cadastra_fornecedor'%}" class="colection-item">Cadastra Fornecedor</a></li>
         </ul>       
     </div>
+   <!-- <div class="col s12">Gestão Financeira</div>-->
 
-    <div class="col s6">
+    <div class="col s12">
         <h5>Agenda de Serviços</h5>
         <table class="table">
             <thead>
@@ -27,8 +29,9 @@
                     <th>Cliente</th>
                     <th>Descrição</th>
                     <th>Ação</th>
-                </tr>
+                </tr>  
             </thead>
+           
             <tbody>
                 {%for compromisso in compromisso%}
                 <tr>

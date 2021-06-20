@@ -44,7 +44,16 @@ class CompromissoForm(ModelForm):
             'data', 'hora', 'descricao', 'cliente',
         ]
 
-# Rotina de cadastro de endereço
+# Criando classe de formulário de contas a pagar
+
+class ContasaPagarForm(ModelForm):
+    class Meta:
+        model = ContasaPagar
+        fields = [ 
+            'vencimento', 'valor', 'fornecedor', 'situacao', 'notafiscal',
+        ]
+
+# Rotina de cadastro de endereço protegida por login
 
 @login_required
 def cadastra_endereco(request, template_name='endereco/cadastra_endereco.html'):
@@ -54,7 +63,7 @@ def cadastra_endereco(request, template_name='endereco/cadastra_endereco.html'):
         return redirect('dashboard')
     return render(request, template_name, {'form_endereco': form_endereco})
 
-# Rotina de cadastro de clientes
+# Rotina de cadastro de clientes protegida por login
 @login_required
 def cadastra_cliente(request, template_name='cliente/cadastra_cliente.html'):
     form_cliente = ClienteForm(request.POST or None)
@@ -63,7 +72,7 @@ def cadastra_cliente(request, template_name='cliente/cadastra_cliente.html'):
         return redirect('dashboard')
     return render(request, template_name, {'form_cliente':form_cliente})
 
-# Rotina de listagem de clientes
+# Rotina de listagem de clientes protegida por login
 @login_required
 def lista_cliente(request, template_name='cliente/lista_cliente.html'):
     query = request.GET.get("busca")
@@ -75,7 +84,7 @@ def lista_cliente(request, template_name='cliente/lista_cliente.html'):
     return render(request, template_name, clientes)
 
 
-# Rotina de cadastro de fornecedores 
+# Rotina de cadastro de fornecedores protegida por login
 @login_required
 def cadastra_fornecedor(request, template_name='fornecedor/cadastra_fornecedor.html'):
     form_fornecedor = FornecedorForm(request.POST or None)
@@ -84,7 +93,7 @@ def cadastra_fornecedor(request, template_name='fornecedor/cadastra_fornecedor.h
         return redirect('dashboard')
     return render(request, template_name, {'form_fornecedor': form_fornecedor})
 
-# Rotina de cadastro de compromisso
+# Rotina de cadastro de compromisso protegida por login
 @login_required
 def cadastra_compromisso(request, template_name='compromisso/cadastra_compromisso.html'):
     form_compromisso = CompromissoForm(request.POST or None)
@@ -93,13 +102,13 @@ def cadastra_compromisso(request, template_name='compromisso/cadastra_compromiss
         return redirect('dashboard')
     return render(request, template_name, {'form_compromisso':form_compromisso})
 
-# Rotina de construção de um dashboard
+# Rotina de construção de um dashboard protegida por login
 @login_required
 def dashboard(request, template_name='dashboard/dashboard.html'):
     compromisso = Compromisso.objects.all()
     return render(request, template_name, {'compromisso':compromisso})
 
-
+# Rotina para efetuar login
 def logar(request, template_name='login.html'):
     next = request.GET.get('next','/dashboard/dashboard')
     if request.method == 'POST':
@@ -114,7 +123,18 @@ def logar(request, template_name='login.html'):
             return HttpResponseRedirect(settings.LOGIN_URL)
     
     return render(request, template_name,{'redirect_to':next})
-
+# Rotina para efetuar logout
 def deslogar(request):
     logout(request)
     return HttpResponseRedirect(settings.LOGIN_URL)
+
+# Rotina para cadastramento de contas a pagar  
+@login_required
+def cadastra_contasapagar(request, template_name='contasapagar/cadastra_contasapagar.html'):
+    form_contas_pagar = ContasaPagarForm(request.POST or None)
+    if form_contas_pagar.is_valid():
+        form_contas_pagar.save()
+        return redirect('dashboard')
+    return render(request, template_name, {'form_contas_pagar':form_contas_pagar})
+
+  

@@ -11,4 +11,5 @@ urlpatterns= [
     path('fornecedor/cadastra_fornecedor', views.cadastra_fornecedor, name='cadastra_fornecedor'),
     path('compromisso/cadastra_compromisso', views.cadastra_compromisso, name= 'cadastra_compromisso'),
     path('dashboard/dashboard', views.dashboard, name='dashboard'),
+    path('contasapagar/cadastra_contasapagar', views.cadastra_contasapagar, name= 'cadastra_contasapagar'),
 ] 

@@ -1,0 +1,22 @@
+{%extends 'base.html'%}
+{%block title%}
+Cadastro de Contas a Pagar
+{%endblock title%}
+
+{%block content%}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var elems = document.querySelectorAll('select');
+        var instances = M.FormSelect.init(elems);
+    });
+</script>
+<form method="POST">{%csrf_token%}
+    {{form_contas_pagar.as_p}}
+    <button type="submit" class="btn btn-primary">
+        Salvar
+    </button>
+    <a href="{% url 'dashboard' %}">
+        <button type="button" class="btn btn-primary">Voltar</button>
+    </a>
+</form>
+{%endblock content%}
