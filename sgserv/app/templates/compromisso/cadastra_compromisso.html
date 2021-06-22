@@ -5,25 +5,26 @@ Cadastro Compromisso
 {%endblock title%}
 
 {%block content%}
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        var elems = document.querySelectorAll('select');
-        var instances = M.FormSelect.init(elems);
-    });
-</script>
-        <form method="POST">{%csrf_token%}
-            {{form_compromisso.as_p}}
-            <button type="submit" class="btn btn-primay">
-                Salvar
-            </button>
-            <a href="{%url 'dashboard'%}">
-                <button type="button" class="btn btn-primary">
-                    Voltar
+<div class="container">
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var elems = document.querySelectorAll('select');
+            var instances = M.FormSelect.init(elems);
+        });
+    </script>
+            <form method="POST">{%csrf_token%}
+                {{form_compromisso.as_p}}
+                <button type="submit" class="btn btn-primay">
+                    Salvar
                 </button>
-            </a>
-        </form>
+                <a href="{%url 'dashboard'%}">
+                    <button type="button" class="btn btn-primary">
+                        Voltar
+                    </button>
+                </a>
+            </form>
 
-        <br>
-
+            <br>
+</div>
 {%endblock content%}
  

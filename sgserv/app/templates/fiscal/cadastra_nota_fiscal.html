@@ -1,6 +1,7 @@
 {%extends 'base.html'%}
+
 {%block title%}
-Cadastro de Contas a Pagar
+Cadastro de Notas Fiscais
 {%endblock title%}
 
 {%block content%}
@@ -11,14 +12,18 @@ Cadastro de Contas a Pagar
             var instances = M.FormSelect.init(elems);
         });
     </script>
+
     <form method="POST">{%csrf_token%}
-        {{form_contas_pagar.as_p}}
+        {{form_nota_fiscal.as_p}}
         <button type="submit" class="btn btn-primary">
             Salvar
         </button>
-        <a href="{% url 'painel_financeiro' %}">
-            <button type="button" class="btn btn-primary">Voltar</button>
+        <a href="{%url 'painel_financeiro'%}">
+            <button type="button" class="btn btn-primary">
+                Voltar
+            </button>
         </a>
     </form>
 </div>
+
 {%endblock content%}

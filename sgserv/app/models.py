@@ -46,10 +46,11 @@ class NotaFiscal(models.Model):
     ]
     numero = models.BigIntegerField()
     tipo = models.CharField(max_length= 10, choices= TIPO_NOTAFISCAL_CHOICES)
+    fornecedor = models.ManyToManyField(Fornecedor)
     valor = models.FloatField()
 
     def __str__(self):
-        return self.numero
+        return str(self.numero)
     
 
 class ContasaPagar(models.Model):

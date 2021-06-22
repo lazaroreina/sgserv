@@ -44,6 +44,15 @@ class CompromissoForm(ModelForm):
             'data', 'hora', 'descricao', 'cliente',
         ]
 
+# Criando clase de formulário de notas fiscais
+
+class NotaFiscalForm(ModelForm):
+    class Meta:
+        model = NotaFiscal
+        fields = [ 
+            'numero', 'tipo', 'fornecedor', 'valor',
+        ]
+
 # Criando classe de formulário de contas a pagar
 
 class ContasaPagarForm(ModelForm):
@@ -128,13 +137,29 @@ def deslogar(request):
     logout(request)
     return HttpResponseRedirect(settings.LOGIN_URL)
 
+
+# Rotina para geração de página de controle da área financeira
+@login_required
+def painel_financeiro(request, template_name='financeiro/painel_financeiro.html'):
+    return render(request, template_name)
+
+# Rotina para cadastramento de notas fiscais
+@login_required
+def cadastra_nota_fiscal(request, template_name='fiscal/cadastra_nota_fiscal.html'):
+    form_nota_fiscal = NotaFiscalForm(request.POST or None)
+    if form_nota_fiscal.is_valid():
+        form_nota_fiscal.save()
+        return redirect('painel_financeiro')
+    return render(request, template_name, {'form_nota_fiscal':form_nota_fiscal})
+
+
 # Rotina para cadastramento de contas a pagar  
 @login_required
 def cadastra_contasapagar(request, template_name='contasapagar/cadastra_contasapagar.html'):
     form_contas_pagar = ContasaPagarForm(request.POST or None)
     if form_contas_pagar.is_valid():
         form_contas_pagar.save()
-        return redirect('dashboard')
-    return render(request, template_name, {'form_contas_pagar':form_contas_pagar})
+        return redirect('painel_financeiro')
+    return render(request, template_name, {'form_contas_pagar': form_contas_pagar})
 
   

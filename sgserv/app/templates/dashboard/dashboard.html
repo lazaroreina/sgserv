@@ -5,41 +5,41 @@
 
 {%block content%}
 
-<div class="left row col s20">
-   
-    <div class="col s20">
+<div class="row">
+    <div class="col s2">
         <ul class="collection">
-            <li><a href="{% url 'cadastra_compromisso'%}" class="colection-item">Cadastra Compromisso</a></li>
-            <li></li><a href="{% url 'lista_cliente'%}" class="colection-item">Lista Cliente</a></li>  
-            <li></li><a href="{% url 'cadastra_contasapagar'%}" class="colection-item">Cadastra Contas a Pagar</a></li>
-            <li></li><a href="{% url 'cadastra_endereco'%}" class="colection-item">Cadastra Endereço</a></li> 
-            <li></li><a href="{% url 'cadastra_cliente'%}" class="colection-item">Cadastra Cliente</a></li>  
-            <li></li><a href="{% url 'cadastra_fornecedor'%}" class="colection-item">Cadastra Fornecedor</a></li>
+            <a href="{% url 'cadastra_compromisso'%}" class="collection-item"><li>Cadastra Ordem</li></a>
+            <a href="{% url 'painel_financeiro'%}" class="collection-item"><li>Gestão Financeira</li></a>
+            <a href="{% url 'lista_cliente'%}" class="collection-item"><li>Lista Cliente</li></a> 
+            <a href="{% url 'cadastra_endereco'%}" class="collection-item"><li>Cadastra Endereço</li></a> 
+            <a href="{% url 'cadastra_cliente'%}" class="collection-item"><li>Cadastra Cliente</li></a>  
+            <a href="{% url 'cadastra_fornecedor'%}" class="collection-item"><li>Cadastra Fornecedor</li></a>
         </ul>       
     </div>
-   <!-- <div class="col s12">Gestão Financeira</div>-->
+    <br>
 
-    <div class="col s12">
-        <h5>Agenda de Serviços</h5>
-        <table class="table">
+    <div class="center col s5">
+        <h5>Agenda de Ordens de Serviço</h5>
+        <table class="highlight centered">
             <thead>
                 <tr>
                     <th>Data</th>
                     <th>Hora</th>
                     <th>Cliente</th>
                     <th>Descrição</th>
-                    <th>Ação</th>
+                    <!--<th>Ação</th>-->
                 </tr>  
             </thead>
            
             <tbody>
                 {%for compromisso in compromisso%}
                 <tr>
-                    <td>{{compromisso.data}}</td>
+                    <td><a href="{%url 'painel_financeiro'%}">{{compromisso.data}}</a></td>
                     <td> {{compromisso.hora}}</td>
                     <td>{{compromisso.cliente}}</td>
                     <td>{{compromisso.descricao}}</td>
-                    <td>
+                    
+                    <!-- <td>
                         <a href="#">
                             <i class="material-icons">search</i>
                         </a>
@@ -49,12 +49,30 @@
                         <a href="#">
                             <i class="material-icons">delete</i>
                         </a>
-                    </td>
+                    </td> -->
                 </tr>
                 {%endfor%}
             </tbody>
         </table>
     </div>
+    <div class="center col s5">
+        <h5>Agenda Financeira</h5>
+        <table class="centered highlight">
+            <thead>
+                <tr>
+                    <th>Vencimento</th>
+                    <th>Valor</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>...</td>
+                    <td>...</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
 </div>
 
 {%endblock content%}

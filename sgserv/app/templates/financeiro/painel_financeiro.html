@@ -1,0 +1,18 @@
+{%extends 'base.html'%}
+{%block title%}
+Gestão Financeira
+{%endblock title%}
+
+{%block content%}
+<div class="container">
+    <div class="collection">
+        <a href="{%url 'cadastra_nota_fiscal'%}" class="center collection-item">Cadastrar Nota Fiscal</a>
+        <a href="{%url 'cadastra_contasapagar'%}" class="center collection-item">Cadastra Contas a Pagar</a>
+    </div>
+    <a href="{%url 'dashboard'%}">
+    <button type="button" class="btn btn-primary">
+        Voltar
+    </button>
+    </a>
+</div>
+{%endblock content%}

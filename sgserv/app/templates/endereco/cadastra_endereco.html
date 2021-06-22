@@ -4,6 +4,7 @@ Cadastro de Endereço
 {%endblock title%}
 
 {%block content%}
+<div class="container">
         <form method="POST">{%csrf_token%}
             {{form_endereco.as_p}}
             <button type="submit" class="btn btn-primay">
@@ -15,5 +16,6 @@ Cadastro de Endereço
                 </button>
             </a>
         </form>
+</div>
         
 {%endblock content%}

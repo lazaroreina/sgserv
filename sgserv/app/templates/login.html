@@ -5,57 +5,15 @@ Página Inicial
 {%endblock title%}
 
 {%block content%}
-  <!--      <br>
-        <ul>
-        <li>
-                <a href="{% url 'cadastra_endereco' %}" class="white">
-                        <button type="button" class="btn btn-primary">
-                                Cadastra Endereco
-                        </button>
-                </a>
-        </li>
-        <br>
-        <li>
-                <a href="{% url 'cadastra_cliente' %}" class="white">
-                        <button type="button" class="btn btn-primary">
-                                Cadastra Cliente
-                        </button>
-                </a> 
-        </li>
-        <br>
-        <li>
-                <a href="{% url 'lista_cliente' %}" class="white">
-                        <button type="button" class="btn btn-primary">
-                                Listar Cliente
-                        </button>
-                </a>
-        </li>
-        <br>
-        <li>
-                <a href="{% url 'cadastra_fornecedor' %}" class="white">
-                        <button type="button" class="btn btn-primary">
-                                Cadastra Fornecedor
-                        </button>
-                </a>
-        </li>
-        <br>
-        <li>
-                <a href="{% url 'cadastra_compromisso' %}" class="white">
-                        <button type="button" class="btn btn-primary">
-                                Cadastra Compromisso
-                        </button>
-                </a>
-        </li>
-        </ul>
--->
-
-<form method="POST">{%csrf_token%}
-        <h5 class="center">Login</h5>
-        <input type="text" name="username" placeholder="Usuário">
-        <input type="password" name="password" placeholder="Senha">
-        <button type="submit" class="btn btn-primary">
-                Logar
-        </button>
-</form>
+<div class="container">
+        <form method="POST">{%csrf_token%}
+                <h5 class="center">Login</h5>
+                <input type="text" name="username" placeholder="Usuário">
+                <input type="password" name="password" placeholder="Senha">
+                <button type="submit" class="btn btn-primary">
+                        Logar
+                </button>
+        </form>
+</div>  
 
 {%endblock content%}
