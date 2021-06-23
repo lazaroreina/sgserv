@@ -69,7 +69,7 @@ def cadastra_endereco(request, template_name='endereco/cadastra_endereco.html'):
     form_endereco = EnderecoForm(request.POST or None)
     if form_endereco.is_valid():
         form_endereco.save()
-        return redirect('dashboard')
+        return redirect('cadastro')
     return render(request, template_name, {'form_endereco': form_endereco})
 
 # Rotina de cadastro de clientes protegida por login
@@ -115,7 +115,13 @@ def cadastra_compromisso(request, template_name='compromisso/cadastra_compromiss
 @login_required
 def dashboard(request, template_name='dashboard/dashboard.html'):
     compromisso = Compromisso.objects.all()
-    return render(request, template_name, {'compromisso':compromisso})
+    contas_pagar = ContasaPagar.objects.all()
+    return render(request, template_name, {'compromisso':compromisso, 'contas_pagar':contas_pagar})
+
+# Rotina para página de cadastro
+@login_required
+def cadastro(request, template_name='cadastro.html'):
+    return render(request, template_name)
 
 # Rotina para efetuar login
 def logar(request, template_name='login.html'):

@@ -10,10 +10,7 @@
         <ul class="collection">
             <a href="{% url 'cadastra_compromisso'%}" class="collection-item"><li>Cadastra Ordem</li></a>
             <a href="{% url 'painel_financeiro'%}" class="collection-item"><li>Gestão Financeira</li></a>
-            <a href="{% url 'lista_cliente'%}" class="collection-item"><li>Lista Cliente</li></a> 
-            <a href="{% url 'cadastra_endereco'%}" class="collection-item"><li>Cadastra Endereço</li></a> 
-            <a href="{% url 'cadastra_cliente'%}" class="collection-item"><li>Cadastra Cliente</li></a>  
-            <a href="{% url 'cadastra_fornecedor'%}" class="collection-item"><li>Cadastra Fornecedor</li></a>
+               <a href="{% url 'cadastro'%}" class="collection-item"><li>Gestão de Cadastro</li></a>
         </ul>       
     </div>
     <br>
@@ -65,10 +62,12 @@
                 </tr>
             </thead>
             <tbody>
+                {%for boleto in contas_pagar%}
                 <tr>
-                    <td>...</td>
-                    <td>...</td>
+                    <td>{{boleto.vencimento}}</td>
+                    <td>R${{boleto.valor}}</td>
                 </tr>
+                {%endfor%}
             </tbody>
         </table>
     </div>

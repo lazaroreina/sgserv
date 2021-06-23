@@ -5,6 +5,7 @@ from . import views
 urlpatterns= [ 
     path('login', views.logar, name='login'),
     path('/deslogar/', views.deslogar, name='deslogar'),
+    path('cadastro', views.cadastro, name='cadastro'),
     path('cliente/cadastra_cliente', views.cadastra_cliente, name='cadastra_cliente'),
     path('cliente/lista_cliente', views.lista_cliente, name='lista_cliente'),
     path('endereco/cadastra_endereco', views.cadastra_endereco, name='cadastra_endereco'),
@@ -14,4 +15,5 @@ urlpatterns= [
     path('financeiro/painel_financeiro', views.painel_financeiro, name= 'painel_financeiro'),
     path('contasapagar/cadastra_contasapagar', views.cadastra_contasapagar, name= 'cadastra_contasapagar'),
     path('fiscal/cadastra_nota_fiscal', views.cadastra_nota_fiscal, name= 'cadastra_nota_fiscal'),
+
 ] 
