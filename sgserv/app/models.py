@@ -34,8 +34,16 @@ class Fornecedor(models.Model):
         return self.nome
 
 class Compromisso(models.Model):
+    TIPO_SOLICITACAO_CHOICES = [
+        ('0', 'Visita técnica'),
+        ('1', 'Reparo em portões'),
+        ('2', 'Reparo em rede elétrica'),
+        ('3', 'Instalação de câmeras'),
+    ]
+
     data = models.DateField()
     hora = models.TimeField()
+    tipo = models.CharField(max_length= 30, choices=TIPO_SOLICITACAO_CHOICES)
     descricao = models.TextField()
     cliente = models.ForeignKey(Cliente, on_delete=CASCADE)
 

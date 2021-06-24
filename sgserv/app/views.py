@@ -41,7 +41,7 @@ class CompromissoForm(ModelForm):
     class Meta:
         model = Compromisso
         fields = [ 
-            'data', 'hora', 'descricao', 'cliente',
+            'data', 'hora', 'tipo', 'descricao', 'cliente',
         ]
 
 # Criando clase de formulário de notas fiscais
