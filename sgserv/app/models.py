@@ -54,7 +54,7 @@ class NotaFiscal(models.Model):
     ]
     numero = models.BigIntegerField()
     tipo = models.CharField(max_length= 10, choices= TIPO_NOTAFISCAL_CHOICES)
-    fornecedor = models.ManyToManyField(Fornecedor)
+    fornecedor = models.ForeignKey(Fornecedor, on_delete=CASCADE)
     valor = models.FloatField()
 
     def __str__(self):
