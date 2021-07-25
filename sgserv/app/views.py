@@ -1,7 +1,8 @@
+from os import fpathconf
 from django.db.models import fields
 from django.forms import ModelForm
 from django.http.response import HttpResponseRedirect
-from django.shortcuts import redirect, render
+from django.shortcuts import get_object_or_404, redirect, render
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.conf import settings
@@ -116,7 +117,8 @@ def cadastra_compromisso(request, template_name='compromisso/cadastra_compromiss
 def dashboard(request, template_name='dashboard/dashboard.html'):
     compromisso = Compromisso.objects.all()
     contas_pagar = ContasaPagar.objects.all()
-    return render(request, template_name, {'compromisso':compromisso, 'contas_pagar':contas_pagar})
+    fornecedor = Fornecedor.objects.all()
+    return render(request, template_name, {'compromisso':compromisso, 'contas_pagar':contas_pagar, 'fornecedor':fornecedor})
 
 # Rotina para página de cadastro
 @login_required
@@ -168,4 +170,9 @@ def cadastra_contasapagar(request, template_name='contasapagar/cadastra_contasap
         return redirect('painel_financeiro')
     return render(request, template_name, {'form_contas_pagar': form_contas_pagar})
 
-  
+#Rotina para listagem de contas a pagar por fornecedor
+@login_required
+def lista_contas_pagar_fornecedor(request, pk, template_name='contasapagar/lista_fornecedor.html'):
+    fornecedor = get_object_or_404(Fornecedor, pk = pk)
+    contas_pagar = ContasaPagar.objects.filter(fornecedor = fornecedor.pk)
+    return render(request, template_name, {'contas_pagar':contas_pagar, 'fornecedor':fornecedor})

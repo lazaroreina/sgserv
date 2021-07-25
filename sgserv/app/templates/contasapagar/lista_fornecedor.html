@@ -1,0 +1,56 @@
+{% extends 'base.html'%}
+
+{%block title%}
+Listagem Cobranças Fornecedor
+{% endblock title %}
+
+{% block content %}
+<div class="container center">
+
+<div class="center row">
+    <div class="col 12">
+        <ul class="collection col 6">
+            <li class="collection-item"><h3>Nome</h3></li>
+            <li class="collection-item">CNPJ</li>
+            <li class="collection-item">Telefone</li>
+            <li class="collection-item">Endereço</li>
+        </ul>
+        <ul class="collection col 6">
+            <li class="collection-item"><h3>{{fornecedor.nome}}</h3></li>
+            <li class="collection-item">{{fornecedor.CNPJ}}</li>
+            <li class="collection-item">{{fornecedor.telefone}}</li>
+            <li class="collection-item">{{fornecedor.endereco}}</li>
+        </ul>
+    </div>
+    <br>
+    <div class="col 12">
+    <table class="highlight">
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Vencimento</th>
+                <th>Valor</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for compromisso in contas_pagar%}
+            <tr>
+                <td>{{compromisso.fornecedor.nome}}</td>
+                <td>{{compromisso.vencimento}}</td>
+                <td>{{compromisso.valor}}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    </div>
+
+</div>
+
+<a href="{% url 'dashboard' %}">
+    <button type="button" class="btn btn-primary">
+        Voltar
+    </button>
+</a>
+
+</div>
+{% endblock content %}

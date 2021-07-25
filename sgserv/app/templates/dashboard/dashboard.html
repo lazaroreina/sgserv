@@ -59,6 +59,7 @@
                 <tr>
                     <th>Vencimento</th>
                     <th>Valor</th>
+                    <th>Fornecedor</th>
                 </tr>
             </thead>
             <tbody>
@@ -66,6 +67,7 @@
                 <tr>
                     <td>{{boleto.vencimento}}</td>
                     <td>R${{boleto.valor}}</td>
+                    <td><a href="{%url 'lista_contas_pagar_fornecedor' boleto.fornecedor.pk %}">{{boleto.fornecedor}}</a></td>
                 </tr>
                 {%endfor%}
             </tbody>

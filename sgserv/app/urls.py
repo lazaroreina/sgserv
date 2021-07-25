@@ -15,5 +15,6 @@ urlpatterns= [
     path('financeiro/painel_financeiro', views.painel_financeiro, name= 'painel_financeiro'),
     path('contasapagar/cadastra_contasapagar', views.cadastra_contasapagar, name= 'cadastra_contasapagar'),
     path('fiscal/cadastra_nota_fiscal', views.cadastra_nota_fiscal, name= 'cadastra_nota_fiscal'),
+    path('contasapagar/lista_contas_pagar_fornecedor/<int:pk>/', views.lista_contas_pagar_fornecedor, name= 'lista_contas_pagar_fornecedor'),
 
 ] 
