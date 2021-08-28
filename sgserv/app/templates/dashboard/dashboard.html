@@ -1,79 +1,129 @@
-{% extends 'base.html' %}
+<!Doctype html>
 
-{%block title%}
-{%endblock title%}
+<html>
+    <head>
+        {%load static%}
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Dashboard</title>
+        <link href="{% static 'app/sg.css' %}" rel="stylesheet">
 
-{%block content%}
+    </head>
 
-<div class="row">
-    <div class="col s2">
-        <ul class="collection">
-            <a href="{% url 'cadastra_compromisso'%}" class="collection-item"><li>Cadastra Ordem</li></a>
-            <a href="{% url 'painel_financeiro'%}" class="collection-item"><li>Gestão Financeira</li></a>
-               <a href="{% url 'cadastro'%}" class="collection-item"><li>Gestão de Cadastro</li></a>
-        </ul>       
-    </div>
-    <br>
+    <body>
+        <div class="navbar">
+            <h1>Sistema de gestão de serviços</h1>
+        </div>
+        <div class="nome-pagina">
+            <h3>Dashboard</h3>
+        </div>
+        <div class="corpo">
+            <div class="quadro-menu-lateral">
+                <h3>Menu</h3>
+                <div class="menu-lateral">
 
-    <div class="center col s5">
-        <h5>Agenda de Ordens de Serviço</h5>
-        <table class="highlight centered">
-            <thead>
-                <tr>
-                    <th>Data</th>
-                    <th>Hora</th>
-                    <th>Cliente</th>
-                    <th>Descrição</th>
-                    <!--<th>Ação</th>-->
-                </tr>  
-            </thead>
-           
-            <tbody>
-                {%for compromisso in compromisso%}
-                <tr>
-                    <td><a href="{%url 'painel_financeiro'%}">{{compromisso.data}}</a></td>
-                    <td> {{compromisso.hora}}</td>
-                    <td>{{compromisso.cliente}}</td>
-                    <td>{{compromisso.descricao}}</td>
+                    <div class="menu-lateral-operacional">
+                        <p class="opcao">Gestão Operacional</p>
+                        <div class="drop-operacional">
+                            <a href="agendamento.html"><p class="opcao">Agendar Serviços</p></a>
+                            <a href="#"><p class="opcao">Pedir Material</p></a>
+                            <a href="#"><p class="opcao">Gerar Relatórios</p></a>
+
+                        </div>
+                    </div>
                     
-                    <!-- <td>
-                        <a href="#">
-                            <i class="material-icons">search</i>
-                        </a>
-                        <a href="#">
-                            <i class="material-icons">edit</i>
-                        </a>
-                        <a href="#">
-                            <i class="material-icons">delete</i>
-                        </a>
-                    </td> -->
-                </tr>
-                {%endfor%}
-            </tbody>
-        </table>
-    </div>
-    <div class="center col s5">
-        <h5>Agenda Financeira</h5>
-        <table class="centered highlight">
-            <thead>
-                <tr>
-                    <th>Vencimento</th>
-                    <th>Valor</th>
-                    <th>Fornecedor</th>
-                </tr>
-            </thead>
-            <tbody>
-                {%for boleto in contas_pagar%}
-                <tr>
-                    <td>{{boleto.vencimento}}</td>
-                    <td>R${{boleto.valor}}</td>
-                    <td><a href="{%url 'lista_contas_pagar_fornecedor' boleto.fornecedor.pk %}">{{boleto.fornecedor}}</a></td>
-                </tr>
-                {%endfor%}
-            </tbody>
-        </table>
-    </div>
+                    <div class="menu-lateral-financeiro">
+                        <p class="opcao">Gestão Financeira</p>
+                        <div class="drop-financeiro">
+                            <a href="#"><p class="opcao">Contas a Pagar</p></a>
+                            <a href="#"><p class="opcao">Contas a Receber</p></a>
+                        </div>
+                    </div>
 
-</div>
+                    <div class="menu-lateral-administrativo">
+                        <p class="opcao">Gestão Administrativa</p>
+                        <div class="drop-adm">
+                            <a href="#"><p class="opcao">Contas a Pagar</p></a>
+                            <a href="#"><p class="opcao">Contas a Receber</p></a>
+                        </div>
+                    </div>
+                    
+                </div>       
+            </div>
+            <div class="quadro">
+                <h3>Ordens de Serviço</h3>
+                <table class="ordens">
+                    <thead>
+                        <tr>
+                            <th>Descrição</th>
+                            <th>Cliente</th> 	                            
+                            <th>Data</th>
+                            <th>Situação</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for ordem in compromisso%}
+                        <tr class="tr-ordens">
+                            <td><a href="#">{{ordem.descricao}}</a></td>
+                            <td>{{ordem.cliente}}</td>                            
+                            <td>{{ordem.data}}</td>
+                            <td>A iniciar</td>
+                        </tr>
+                        {%endfor%}
+                                                                                               
+                    </tbody>
+                </table>
+            </div>
+            <div class="quadro">
+                <h3>Financeiro</h3>
+                <div class="contas">   
+                    <h4>Contas a pagar</h4>                 
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Fornecedor</th>
+                                <th>Valor</th>
+                                <th>Vencimento</th>                                
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {%for conta in contas_pagar%}
+                            <tr>
+                                <td>{{conta.fornecedor}}</td>
+                                <td>R$ {{conta.valor}}</td>
+                                <td>{{conta.vencimento}}</td>                             
+                            </tr>
+                            {%endfor%}
+                        </tbody>
+                    </table>
+                </div>
+                <div class="contas">
+                    <h4>Contas a Receber</h4>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Cliente</th>
+                                <th>Valor</th>
+                                <th>Vencimento</th>                                
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {%for conta_receber in contas_receber%}
+                            <tr>
+                                <td>{{conta_receber.cliente}}</td>
+                                <td>R$ {{conta_receber.valor}}</td>
+                                <td>{{conta_receber.vencimento}}</td>                                
+                            </tr>
+                            {%endfor%}
+                                                                                                                                                                                
+                        </tbody>
 
-{%endblock content%}
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="rodape">
+            <p>Copyright - Desenvolvido por <a href="http://www.lazaroreina.com.br" target="_blank">Lázaro Reinã</a></p>
+        </div>
+    </body>
+</html>

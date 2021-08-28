@@ -173,7 +173,6 @@ div{
     text-align: center;
     font-size: 14px;
     width: 200px;
-    text-transform: capitalize;
 }
 .ordens td:hover{
     background-color: whitesmoke;
@@ -182,7 +181,6 @@ div{
     color: black;
     text-decoration: none;
 }
-
 
 .contas{
     width: 400 px;

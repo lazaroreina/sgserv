@@ -63,6 +63,15 @@ class ContasaPagarForm(ModelForm):
             'vencimento', 'valor', 'fornecedor', 'situacao', 'notafiscal',
         ]
 
+# Criando classe de formulário de contas a receber
+
+class ContasReceberForm(ModelForm):
+    class Meta:
+        model = ContasaReceber
+        fields = [
+            'vencimento', 'valor', 'cliente', 'situacao', 'notafiscal',
+        ]
+
 # Rotina de cadastro de endereço protegida por login
 
 @login_required
@@ -117,8 +126,9 @@ def cadastra_compromisso(request, template_name='compromisso/cadastra_compromiss
 def dashboard(request, template_name='dashboard/dashboard.html'):
     compromisso = Compromisso.objects.all()
     contas_pagar = ContasaPagar.objects.all()
+    contas_receber = ContasaReceber.objects.all()
     fornecedor = Fornecedor.objects.all()
-    return render(request, template_name, {'compromisso':compromisso, 'contas_pagar':contas_pagar, 'fornecedor':fornecedor})
+    return render(request, template_name, {'compromisso':compromisso, 'contas_pagar':contas_pagar, 'contas_receber':contas_receber, 'fornecedor':fornecedor})
 
 # Rotina para página de cadastro
 @login_required
