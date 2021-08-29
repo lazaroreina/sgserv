@@ -36,13 +36,23 @@ class FornecedorForm(ModelForm):
             'nome', 'CNPJ', 'telefone', 'email', 'endereco',
         ]
 
+
+# Criando classe de formulário de Equipamentos
+
+class EquipamentosForm(ModelForm):
+    class Meta:
+        model = Equipamentos
+        fields = [ 
+            'nome', 'marca', 'modelo', 'serie', 'capacidade', 
+        ]
+
 # Criando classe de formulário de compromissos
 
 class CompromissoForm(ModelForm):
     class Meta:
         model = Compromisso
         fields = [ 
-            'id','data', 'hora', 'tipo', 'descricao', 'cliente', 
+            'id','data', 'hora', 'tipo', 'descricao', 'cliente', 'equipamentos', 
         ]
 
 # Criando clase de formulário de notas fiscais
@@ -112,6 +122,14 @@ def cadastra_fornecedor(request, template_name='fornecedor/cadastra_fornecedor.h
         return redirect('dashboard')
     return render(request, template_name, {'form_fornecedor': form_fornecedor})
 
+# Rotina de cadastro de equipamentos protegida por login
+@login_required
+def cadastra_equipamento(request, template_name='equipamentos/cadastra_equipamento.html'):
+    form_equipamento = EquipamentosForm(request.POST or None)
+    if form_equipamento.is_valid():
+        form_equipamento.save()
+        return redirect('dashboard')
+    return render(request, template_name, {'form_equipamento': form_equipamento})
 # Rotina de cadastro de compromisso protegida por login
 @login_required
 def cadastra_compromisso(request, template_name='ordens/cadastra_compromisso.html'):
@@ -136,10 +154,6 @@ def detalha_ordem(request, pk, template_name='ordens/detalha_ordem.html'):
     ordem = get_object_or_404(Compromisso, pk = pk)
     return render(request, template_name, {'ordem':ordem})
 
-# Rotina para página de cadastro
-@login_required
-def cadastro(request, template_name='cadastro.html'):
-    return render(request, template_name)
 
 # Rotina para efetuar login
 def logar(request, template_name='login.html'):

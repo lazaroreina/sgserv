@@ -1,40 +1,85 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    {%load static%}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link href="{% static 'app/sg.css' %}" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 
-    
-<meta charset="UTF-8">
 <title>
     {%block title%}
     {%endblock title%}
-  
 </title>
 </head>
 <body>
-    <nav class="teal lighten-1 navbar navbar-default">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <a class="brand-logo center">Sistema de Gestão de Serviços</a>
-            </div>
+        <div class="navbar">
+            <h1>Sistema de gestão de serviços</h1>
+        </div>
+        <div class="nome-pagina">
+        {%block nomepagina%}
+        {%endblock%}
+        </div>
+        <div class="corpo">
+            <div class="quadro-menu-lateral">
+                <h3>Menu</h3>
+                <div class="menu-opcoes">
+                    <a href="{% url 'dashboard'%}">
+                          <!--
+                            Sizes:
+                            tiny: 1rem
+                            small: 2rem
+                            medium: 4rem
+                            large: 6rem
+                        -->
+                        <i class="large material-icons">home</i>
+                    </a>
 
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="right nav navbar-nav">
-                    {% if request.user.is_authenticated %}
-                    <li>Olá {{request.user.username}}</li>
-                    <li><a href="{% url 'deslogar'%}">Logout</a></li>
-                    {% endif %}
-                </ul>
+                </div>
+                <div class="menu-lateral">
+                    <div class="menu-lateral-operacional">
+                        <p class="opcao">Gestão Operacional</p>
+                        <div class="drop-operacional">
+                            <a href="{%url 'cadastra_compromisso'%}"><p class="opcao">Abrir Ordem</p></a>
+                            <a href="#"><p class="opcao">Consultar Ordens</p></a>
+                            <a href="#"><p class="opcao">Gerar Relatórios</p></a>
+                            <a href="#"><p class= "opcao">Cadastra Equipamentos</p></a>
+                            <a href="#"><p class="opcao">Cadastra Produtos</p></a>
+
+                        </div>
+                    </div>
+                    
+                    <div class="menu-lateral-financeiro">
+                        <p class="opcao">Gestão Financeira</p>
+                        <div class="drop-financeiro">
+                            <a href="#"><p class="opcao">Contas a Pagar</p></a>
+                            <a href="#"><p class="opcao">Contas a Receber</p></a>
+                        </div>
+                    </div>
+
+                    <div class="menu-lateral-administrativo">
+                        <p class="opcao">Gestão Administrativa</p>
+                        <div class="drop-adm">
+                            <a href="{%url 'cadastra_cliente'%}"><p class="opcao">Cadastrar Cliente</p></a>
+                            <a href="{%url 'cadastra_fornecedor'%}"><p class="opcao">Cadastrar Fornecedor</p></a>
+                            <a href="{%url 'cadastra_equipamento'%}"><p class= "opcao">Cadastrar Equipamentos</p></a>
+                            <a href="#"><p class= "opcao">Cadastrar Insumos</p></a>
+                        </div>
+                    </div>
+                    
+                        <a href="{% url 'deslogar'%}"><p class="opcao">Logout</p></a>
+                    
+                    
+                </div>       
+            </div>
+            <div class= "quadro-geral">
+                {%block content%}
+                {%endblock%}
             </div>
         </div>
-    </nav>
-    <div class="container-fluid">
-        {%block content%}
-        {%endblock content%}
-    </div>
-
+        <div class="rodape">
+            <p>Copyright - Desenvolvido por <a href="http://www.lazaroreina.com.br" target="_blank">Lázaro Reinã</a></p>
+        </div>
 </body>
 </html>

@@ -1,13 +1,14 @@
 from collections import namedtuple
+from os import pardir
 from django.urls.conf import path
 from . import views
 
 urlpatterns= [ 
     path('login', views.logar, name='login'),
     path('/deslogar/', views.deslogar, name='deslogar'),
-    path('cadastro', views.cadastro, name='cadastro'),
     path('cliente/cadastra_cliente', views.cadastra_cliente, name='cadastra_cliente'),
     path('cliente/lista_cliente', views.lista_cliente, name='lista_cliente'),
+    path('equipamentos/cadastra_equipamento', views.cadastra_equipamento, name='cadastra_equipamento'),
     path('endereco/cadastra_endereco', views.cadastra_endereco, name='cadastra_endereco'),
     path('fornecedor/cadastra_fornecedor', views.cadastra_fornecedor, name='cadastra_fornecedor'),
     path('compromisso/cadastra_compromisso', views.cadastra_compromisso, name= 'cadastra_compromisso'),

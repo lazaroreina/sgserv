@@ -1,60 +1,15 @@
-<!Doctype html>
+{%extends 'base.html'%}
 
-<html>
-    <head>
-        {%load static%}
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Dashboard</title>
-        <link href="{% static 'app/sg.css' %}" rel="stylesheet">
+{%block title%}
+        <h3>Dashboard</h3>
+{%endblock title%}
 
-    </head>
+{%block nomepagina%}
+<h3>Dashboard</h3>
+{%endblock%}
 
-    <body>
-        <div class="navbar">
-            <h1>Sistema de gestão de serviços</h1>
-        </div>
-        <div class="nome-pagina">
-            <h3>Dashboard</h3>
-        </div>
-        <div class="corpo">
-            <div class="quadro-menu-lateral">
-                <h3>Menu</h3>
-                <div class="menu-lateral">
-
-                    <div class="menu-lateral-operacional">
-                        <p class="opcao">Gestão Operacional</p>
-                        <div class="drop-operacional">
-                            <a href="{%url 'cadastra_compromisso'%}"><p class="opcao">Abrir Ordem</p></a>
-                            <a href="#"><p class="opcao">Consultar Ordens</p></a>
-                            <a href="#"><p class="opcao">Gerar Relatórios</p></a>
-                            <a href="#"><p class= "opcao">Cadastra Equipamentos</p></a>
-                            <a href="#"><p class="opcao">Cadastra Produtos</p></a>
-
-                        </div>
-                    </div>
-                    
-                    <div class="menu-lateral-financeiro">
-                        <p class="opcao">Gestão Financeira</p>
-                        <div class="drop-financeiro">
-                            <a href="#"><p class="opcao">Contas a Pagar</p></a>
-                            <a href="#"><p class="opcao">Contas a Receber</p></a>
-                        </div>
-                    </div>
-
-                    <div class="menu-lateral-administrativo">
-                        <p class="opcao">Gestão Administrativa</p>
-                        <div class="drop-adm">
-                            <a href="#"><p class="opcao">Contas a Pagar</p></a>
-                            <a href="#"><p class="opcao">Contas a Receber</p></a>
-                        </div>
-                    </div>
-                    
-                        <a href="{% url 'deslogar'%}"><p class="opcao">Logout</p></a>
-                    
-                    
-                </div>       
-            </div>
+{%block content%}
+        
             <div class="quadro">
                 <h3>Ordens de Serviço</h3>
                 <table class="ordens">
@@ -69,9 +24,10 @@
                     </thead>
                     <tbody>
                         {% for ordem in compromisso%}
+                        
                         <tr class="tr-ordens">
                             <td><a href="{%url 'detalha_ordem' ordem.pk%}">{{ordem.id}}</a></td>
-                            <td><a href="#">{{ordem.descricao}}</a></td>
+                            <td>{{ordem.descricao}}</td>
                             <td>{{ordem.cliente}}</td>                            
                             <td>{{ordem.data}}</td>
                             <td>A iniciar</td>
@@ -129,8 +85,4 @@
                 </div>
             </div>
         </div>
-        <div class="rodape">
-            <p>Copyright - Desenvolvido por <a href="http://www.lazaroreina.com.br" target="_blank">Lázaro Reinã</a></p>
-        </div>
-    </body>
-</html>
+{%endblock%}

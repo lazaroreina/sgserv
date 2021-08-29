@@ -33,33 +33,6 @@ class Fornecedor(models.Model):
     def __str__(self):
         return self.nome
 
-class Compromisso(models.Model):
-    TIPO_SOLICITACAO_CHOICES = [
-        ('0', 'Visita técnica'),
-        ('1', 'Reparo em portões'),
-        ('2', 'Reparo em rede elétrica'),
-        ('3', 'Instalação de câmeras'),
-    ]
-    id = id
-    data = models.DateField()
-    hora = models.TimeField()
-    tipo = models.CharField(max_length= 30, choices=TIPO_SOLICITACAO_CHOICES)
-    descricao = models.TextField()
-    cliente = models.ForeignKey(Cliente, on_delete=CASCADE)
-
-class NotaFiscal(models.Model):
-    TIPO_NOTAFISCAL_CHOICES = [ 
-        ('0', 'Entrada'),
-        ('1', 'Saída'),
-    ]
-    numero = models.BigIntegerField()
-    tipo = models.CharField(max_length= 10, choices= TIPO_NOTAFISCAL_CHOICES)
-    fornecedor = models.ForeignKey(Fornecedor, on_delete=CASCADE)
-    valor = models.FloatField()
-
-    def __str__(self):
-        return str(self.numero)
-    
 class Equipamentos(models.Model):
     CAPACIDADE_CHOICES = [
         ('0', '127V'),
@@ -79,6 +52,38 @@ class Insumos(models.Model):
 
     def __str__(self):
         return self
+
+class Compromisso(models.Model):
+    TIPO_SOLICITACAO_CHOICES = [
+        ('0', 'Visita técnica'),
+        ('1', 'Reparo em portões'),
+        ('2', 'Reparo em rede elétrica'),
+        ('3', 'Instalação de câmeras'),
+    ]
+    id = id
+    data = models.DateField()
+    hora = models.TimeField()
+    tipo = models.CharField(max_length= 30, choices=TIPO_SOLICITACAO_CHOICES)
+    descricao = models.TextField()
+    cliente = models.ForeignKey(Cliente, on_delete=CASCADE)
+    equipamentos = models.ManyToManyField(Equipamentos)
+
+    def __str__(self):
+        return self.tipo
+
+class NotaFiscal(models.Model):
+    TIPO_NOTAFISCAL_CHOICES = [ 
+        ('0', 'Entrada'),
+        ('1', 'Saída'),
+    ]
+    numero = models.BigIntegerField()
+    tipo = models.CharField(max_length= 10, choices= TIPO_NOTAFISCAL_CHOICES)
+    fornecedor = models.ForeignKey(Fornecedor, on_delete=CASCADE)
+    valor = models.FloatField()
+
+    def __str__(self):
+        return str(self.numero)
+    
 
 class ContasaPagar(models.Model):
     SITUACAO_BOLETO_CHOICES = [

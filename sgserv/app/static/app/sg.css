@@ -46,8 +46,7 @@ div{
 
 .quadro-menu-lateral{
     background-color:oldlace;
-    border: solid 1px;
-    border-style: dotted;
+    border: dotted 1px;
     padding: 2px 4px 0px 4px;
     width: 20%;
     height: 400px;
@@ -55,6 +54,13 @@ div{
     text-align: center;
     margin: auto;
     box-sizing: border-box;
+}
+
+.menu-opcao{
+    height: 150px;
+    margin: auto;
+    border: dotted 1px;
+    float: left;
 }
 
 .menu-lateral{
@@ -106,10 +112,14 @@ div{
 
 .drop-operacional .opcao{
     font-size: 12px;
-    background-color:lightsalmon;
+    font-weight: bold;
+    background-color:seagreen;
+    color: oldlace;
 }
 .drop-operacional .opcao:hover{
     background-color: oldlace;
+    font-weight: bolder;
+    color: seagreen;
 }
 .drop-financeiro{
     display: none;
@@ -118,11 +128,15 @@ div{
 
 .drop-financeiro .opcao{
     font-size: 12px;
-    background-color: lightsalmon;
+    font-weight: bold;
+    background-color: seagreen;
+    color: oldlace;
 }
 
 .drop-financeiro .opcao:hover{
     background-color: oldlace;
+    font-weight: bolder;
+    color: seagreen;
 }
 
 .drop-adm{
@@ -131,11 +145,15 @@ div{
 }
 .drop-adm .opcao{
     font-size: 12px;
-    background-color: lightsalmon;
+    font-weight: bold;
+    background-color: seagreen;
+    color:oldlace;
 }
 
 .drop-adm .opcao:hover{
     background-color: oldlace;
+    font-weight: bolder;
+    color: seagreen;
 }
 
 .menu-lateral-operacional:hover .drop-operacional{
@@ -150,13 +168,26 @@ div{
     display: block;
 }
 
-.quadro{
+.quadro-geral{
     background-color:oldlace;
     border: solid 1px;
     border-style: dotted; 
     padding: 0px 4px 2px 4px;
     margin: auto;
-    width: 40%;
+    width: 80%;
+    height: 400px;
+    text-align: center;
+    overflow: auto;
+    box-sizing: border-box;
+}
+
+.quadro{
+    
+    border: solid 1px;
+    border-style: dotted; 
+    padding: 0px 4px 2px 4px;
+    margin: auto;
+    width: 50%;
     height: 400px;
     float: left;
     text-align: center;
@@ -175,7 +206,6 @@ div{
     text-align: center;
     font-size: 14px;
     width: 200px;
-    text-transform:lowercase;
 }
 .ordens td:hover{
     background-color: whitesmoke;
@@ -232,11 +262,25 @@ div{
 }
 
 .login{
-    height: 60px;
+    height: 30px;
     text-align: center;
-    top: 50%;
+    padding: 15px 0;
 }
 
+.detalha-ordem{
+    text-align: center;
+    padding-left: 10%;
+}
+
+.detalha-ordem th, .detalha-ordem td{
+    text-align: center;
+    background-color: wheat;
+    border: solid 1px black;
+    border-style: dotted;
+    text-align: center;
+    font-size: 14px;
+    width: 400px;
+}
 .rodape p{
     font-size: 14px;
     top: 30%;

@@ -1,29 +1,36 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <title>Lista Ordem</title>
-        {%load static%}
-        <link href="{% static 'app/sg.css' %}" rel="stylesheet">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+{%extends 'base.html'%}
 
-    </head>
-    <body>
-        <div class="navbar">
-            <h1>Sistema de gestão de servicos</h1>
-        </div>
-        <div class="nome-pagina">
-            <h3>Lista Ordem</h3>
-        </div>
-        <div class="corpo">
-            <ul>
-                <li><label>Id</label>{{ordem.id}}</li>
-                <li>{{ordem.cliente}}</li>
-                <li>{{ordem.data}}</li>
-                <li>{{ordem.hora}}</li>
-                <li>{{ordem.tipo}}</li>
-                <li>{{ordem.descricao}}</li>
-            </ul>
-        </div>
-    </body>
-</html>
+{%block title%}
+
+{%endblock title%}
+
+{%block nomepagina%}
+<h3>Detalha ordem</h3>
+{%endblock%}
+
+{%block content%}
+<h3>Detalhamento da ordem</h3>
+<table class="detalha-ordem">
+                <tr>
+                    <th>Nome</th>
+                    <td>{{ordem.cliente}}</td>
+                </tr>
+                <tr>
+                    <th>Data</th>
+                    <td>{{ordem.data}}</td>
+                </tr>
+                <tr>
+                    <th>Hora</th>
+                    <td>{{ordem.hora}}</td>
+                </tr>
+                <tr>
+                    <th>Tipo</th>
+                    <td>{{ordem.tipo}}</td>
+                </tr>
+                <tr>
+                    <th>Descrição</th>
+                    <td>{{ordem.descricao}}</td>
+                </tr>
+</table>
+
+{%endblock%}
