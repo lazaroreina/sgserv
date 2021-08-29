@@ -40,7 +40,7 @@ class Compromisso(models.Model):
         ('2', 'Reparo em rede elétrica'),
         ('3', 'Instalação de câmeras'),
     ]
-
+    id = id
     data = models.DateField()
     hora = models.TimeField()
     tipo = models.CharField(max_length= 30, choices=TIPO_SOLICITACAO_CHOICES)
@@ -60,6 +60,25 @@ class NotaFiscal(models.Model):
     def __str__(self):
         return str(self.numero)
     
+class Equipamentos(models.Model):
+    CAPACIDADE_CHOICES = [
+        ('0', '127V'),
+        ('1', '220V'),
+    ]
+    nome = models.CharField(max_length= 30)
+    marca = models.CharField(max_length= 20)
+    modelo = models.CharField(max_length= 20)
+    serie = models.IntegerField()
+    capacidade = models.CharField(max_length= 6, choices= CAPACIDADE_CHOICES)
+
+    def __str__(self):
+        return self.nome
+
+class Insumos(models.Model):
+
+
+    def __str__(self):
+        return self
 
 class ContasaPagar(models.Model):
     SITUACAO_BOLETO_CHOICES = [

@@ -237,3 +237,12 @@ div{
     transform: translateY(-30%);
     -webkit-transform: translateY(-30%);
 }
+
+.barra-login{
+    background-color: oldlace;
+    color: seagreen;
+    height: 100px;
+    top: 50%;
+    transform: translate(-50%);
+    -webkit-transform: translate(-50%);
+}

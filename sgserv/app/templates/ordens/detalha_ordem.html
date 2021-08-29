@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Lista Ordem</title>
+        {%load static%}
+        <link href="{% static 'app/sg.css' %}" rel="stylesheet">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    </head>
+    <body>
+        <div class="navbar">
+            <h1>Sistema de gestão de servicos</h1>
+        </div>
+        <div class="nome-pagina">
+            <h3>Lista Ordem</h3>
+        </div>
+        <div class="corpo">
+            <ul>
+                <li><label>Id</label>{{ordem.id}}</li>
+                <li>{{ordem.cliente}}</li>
+                <li>{{ordem.data}}</li>
+                <li>{{ordem.hora}}</li>
+                <li>{{ordem.tipo}}</li>
+                <li>{{ordem.descricao}}</li>
+            </ul>
+        </div>
+    </body>
+</html>

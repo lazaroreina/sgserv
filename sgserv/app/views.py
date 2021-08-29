@@ -42,7 +42,7 @@ class CompromissoForm(ModelForm):
     class Meta:
         model = Compromisso
         fields = [ 
-            'data', 'hora', 'tipo', 'descricao', 'cliente',
+            'id','data', 'hora', 'tipo', 'descricao', 'cliente', 
         ]
 
 # Criando clase de formulário de notas fiscais
@@ -114,7 +114,7 @@ def cadastra_fornecedor(request, template_name='fornecedor/cadastra_fornecedor.h
 
 # Rotina de cadastro de compromisso protegida por login
 @login_required
-def cadastra_compromisso(request, template_name='compromisso/cadastra_compromisso.html'):
+def cadastra_compromisso(request, template_name='ordens/cadastra_compromisso.html'):
     form_compromisso = CompromissoForm(request.POST or None)
     if form_compromisso.is_valid():
         form_compromisso.save()
@@ -129,6 +129,12 @@ def dashboard(request, template_name='dashboard/dashboard.html'):
     contas_receber = ContasaReceber.objects.all()
     fornecedor = Fornecedor.objects.all()
     return render(request, template_name, {'compromisso':compromisso, 'contas_pagar':contas_pagar, 'contas_receber':contas_receber, 'fornecedor':fornecedor})
+
+# Rotina para detalhar ordem 
+@login_required
+def detalha_ordem(request, pk, template_name='ordens/detalha_ordem.html'):
+    ordem = get_object_or_404(Compromisso, pk = pk)
+    return render(request, template_name, {'ordem':ordem})
 
 # Rotina para página de cadastro
 @login_required

@@ -1,19 +1,32 @@
-{% extends 'base.html'%}
+<!DOCTYPE html>
 
-{%block title%}
-Página Inicial
-{%endblock title%}
+<html>
+<head>
+        {%load static%}
+        <meta charset="UTF-8">
+        <link href="{% static 'app/sg.css'%} " rel="stylesheet">
 
-{%block content%}
-<div class="container">
-        <form method="POST">{%csrf_token%}
-                <h5 class="center">Login</h5>
-                <input type="text" name="username" placeholder="Usuário">
-                <input type="password" name="password" placeholder="Senha">
-                <button type="submit" class="btn btn-primary">
-                        Logar
-                </button>
-        </form>
-</div>  
+        <title>Login</title>
+</head>
+<body>
+        <div class="navbar">
+                <h1>Sistema de gestão de serviços</h1>
+        </div>
+        <div class="nome-pagina">
+                <h3>Login</h3>
+        </div>
+        <div class="login">
+                <form method="POST">{%csrf_token%}
+                        <input type="text" name="username" placeholder="Usuário">
+                        <input type="password" name="password" placeholder="Senha">
+                        <button type="submit" class="btn btn-primary">
+                                Logar
+                        </button>
+                </form>
+        </div>  
+</body>
 
-{%endblock content%}
+
+</html>
+
+

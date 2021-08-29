@@ -25,9 +25,11 @@
                     <div class="menu-lateral-operacional">
                         <p class="opcao">Gestão Operacional</p>
                         <div class="drop-operacional">
-                            <a href="agendamento.html"><p class="opcao">Agendar Serviços</p></a>
-                            <a href="#"><p class="opcao">Pedir Material</p></a>
+                            <a href="{%url 'cadastra_compromisso'%}"><p class="opcao">Abrir Ordem</p></a>
+                            <a href="#"><p class="opcao">Consultar Ordens</p></a>
                             <a href="#"><p class="opcao">Gerar Relatórios</p></a>
+                            <a href="#"><p class= "opcao">Cadastra Equipamentos</p></a>
+                            <a href="#"><p class="opcao">Cadastra Produtos</p></a>
 
                         </div>
                     </div>
@@ -48,6 +50,9 @@
                         </div>
                     </div>
                     
+                        <a href="{% url 'deslogar'%}"><p class="opcao">Logout</p></a>
+                    
+                    
                 </div>       
             </div>
             <div class="quadro">
@@ -55,6 +60,7 @@
                 <table class="ordens">
                     <thead>
                         <tr>
+                            <th>Ordem</th>
                             <th>Descrição</th>
                             <th>Cliente</th> 	                            
                             <th>Data</th>
@@ -64,6 +70,7 @@
                     <tbody>
                         {% for ordem in compromisso%}
                         <tr class="tr-ordens">
+                            <td><a href="{%url 'detalha_ordem' ordem.pk%}">{{ordem.id}}</a></td>
                             <td><a href="#">{{ordem.descricao}}</a></td>
                             <td>{{ordem.cliente}}</td>                            
                             <td>{{ordem.data}}</td>
