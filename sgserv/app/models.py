@@ -60,6 +60,11 @@ class Compromisso(models.Model):
         ('2', 'Reparo em rede elétrica'),
         ('3', 'Instalação de câmeras'),
     ]
+    SITUACAO_CHOICES = [ 
+        ('0', 'A iniciar'),
+        ('1', 'Em andamento'),
+        ('2', 'Encerrada'),
+    ]
     id = id
     data = models.DateField()
     hora = models.TimeField()
@@ -67,6 +72,7 @@ class Compromisso(models.Model):
     descricao = models.TextField()
     cliente = models.ForeignKey(Cliente, on_delete=CASCADE)
     equipamentos = models.ManyToManyField(Equipamentos)
+    situacao = models.CharField(default= ('0', 'A iniciar'), max_length= 30, choices= SITUACAO_CHOICES)
 
     def __str__(self):
         return self.tipo

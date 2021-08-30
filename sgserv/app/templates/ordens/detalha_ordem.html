@@ -32,5 +32,9 @@
                     <td>{{ordem.descricao}}</td>
                 </tr>
 </table>
-
+<label for="botao">Encerrar ordem</label>
+<a href="{%url 'encerra_ordem' ordem.pk%}"><button id="botao" type= "submit">
+    Encerrar
+</button>
+</a>
 {%endblock%}

@@ -52,7 +52,7 @@ class CompromissoForm(ModelForm):
     class Meta:
         model = Compromisso
         fields = [ 
-            'id','data', 'hora', 'tipo', 'descricao', 'cliente', 'equipamentos', 
+            'id','data', 'hora', 'tipo', 'descricao', 'cliente', 'equipamentos', 'situacao',
         ]
 
 # Criando clase de formulário de notas fiscais
@@ -153,6 +153,15 @@ def dashboard(request, template_name='dashboard/dashboard.html'):
 def detalha_ordem(request, pk, template_name='ordens/detalha_ordem.html'):
     ordem = get_object_or_404(Compromisso, pk = pk)
     return render(request, template_name, {'ordem':ordem})
+
+# Rotina para encerrar ordem
+@login_required
+def encerra_ordem(request, pk, template_name='ordens/detalha_ordem.html'):
+    ordem = get_object_or_404(Compromisso, pk = pk)
+    ordem.situacao = ('2', 'Encerrada')
+    ordem.save()
+    
+    return render(request, template_name)
 
 
 # Rotina para efetuar login
