@@ -1,7 +1,7 @@
 {%extends 'base.html'%}
 
 {%block title%}
-        <h3>Dashboard</h3>
+Dashboard
 {%endblock title%}
 
 {%block nomepagina%}
@@ -30,7 +30,7 @@
                             <td>{{ordem.descricao}}</td>
                             <td>{{ordem.cliente}}</td>                            
                             <td>{{ordem.data}}</td>
-                            <td>A iniciar</td>
+                            <td>{{ordem.situacao}}</td>
                         </tr>
                         {%endfor%}
                                                                                                

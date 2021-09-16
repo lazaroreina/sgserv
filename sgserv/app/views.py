@@ -1,4 +1,4 @@
-from os import fpathconf
+from os import O_DIRECT, fpathconf
 from django.db.models import fields
 from django.forms import ModelForm
 from django.http.response import HttpResponseRedirect
@@ -156,12 +156,17 @@ def detalha_ordem(request, pk, template_name='ordens/detalha_ordem.html'):
 
 # Rotina para encerrar ordem
 @login_required
-def encerra_ordem(request, pk, template_name='ordens/detalha_ordem.html'):
+def encerra_ordem(request, pk, template_name='ordens/encerra_ordem.html'):
     ordem = get_object_or_404(Compromisso, pk = pk)
-    ordem.situacao = ('2', 'Encerrada')
-    ordem.save()
-    
-    return render(request, template_name)
+    if request.method == 'POST':
+        ordem_form = CompromissoForm(request.POST, instance= ordem)
+        ordem_form.fields['situacao'] = ('2','Encerrada')
+        if ordem_form.is_valid():
+            ordem_form.save()
+            return redirect('dashboard')
+    else:
+        ordem_form = CompromissoForm(instance= ordem)
+    return render(request, template_name, {'ordem':ordem})
 
 
 # Rotina para efetuar login

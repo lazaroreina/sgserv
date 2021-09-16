@@ -1,0 +1,9 @@
+{%extends 'base.html'%}
+
+{%block content%}
+<h2>Tem certeza que deseja encerrar a ordem {{ordem.id}}?</h2>
+
+<form method="POST">{%csrf_token%}
+    <button type="submit">Encerrar</button>
+</form>
+{%endblock%}
