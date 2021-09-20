@@ -14,6 +14,7 @@ urlpatterns= [
     path('compromisso/cadastra_compromisso', views.cadastra_compromisso, name= 'cadastra_compromisso'),
     path('ordens/detalha_ordem/<int:pk>/', views.detalha_ordem, name='detalha_ordem'),
     path('ordens/encerra_ordem/<int:pk>', views.encerra_ordem, name='encerra_ordem'),
+    path('ordens/consulta_ordens/', views.consulta_ordens, name='consulta_ordens'),
     path('dashboard/dashboard', views.dashboard, name='dashboard'),
     path('financeiro/painel_financeiro', views.painel_financeiro, name= 'painel_financeiro'),
     path('contasapagar/cadastra_contasapagar', views.cadastra_contasapagar, name= 'cadastra_contasapagar'),

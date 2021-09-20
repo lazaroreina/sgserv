@@ -66,7 +66,7 @@ class Compromisso(models.Model):
         ('2', 'Encerrada'),
     ]
     id = id
-    data = models.DateField()
+    data = models.DateField()   
     hora = models.TimeField()
     tipo = models.CharField(max_length= 30, choices=TIPO_SOLICITACAO_CHOICES)
     descricao = models.TextField()

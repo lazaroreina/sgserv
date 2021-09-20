@@ -54,6 +54,7 @@ class CompromissoForm(ModelForm):
         fields = [ 
             'id','data', 'hora', 'tipo', 'descricao', 'cliente', 'equipamentos', 'situacao',
         ]
+        ordering = ['-data']
 
 # Criando clase de formulário de notas fiscais
 
@@ -139,12 +140,18 @@ def cadastra_compromisso(request, template_name='ordens/cadastra_compromisso.htm
         return redirect('dashboard')
     return render(request, template_name, {'form_compromisso':form_compromisso})
 
+# Rotina para listagem geral de ordens 
+@login_required
+def consulta_ordens(request, template_name='ordens/consulta_ordens.html'):
+    ordens = Compromisso.objects.all().order_by('-data')
+    return render(request, template_name, {'ordens':ordens})
+
 # Rotina de construção de um dashboard protegida por login
 @login_required
 def dashboard(request, template_name='dashboard/dashboard.html'):
-    compromisso = Compromisso.objects.all()
+    compromisso = Compromisso.objects.all().order_by('data')
     contas_pagar = ContasaPagar.objects.all()
-    contas_receber = ContasaReceber.objects.all()
+    contas_receber = ContasaReceber.objects.all().order_by('vencimento')
     fornecedor = Fornecedor.objects.all()
     return render(request, template_name, {'compromisso':compromisso, 'contas_pagar':contas_pagar, 'contas_receber':contas_receber, 'fornecedor':fornecedor})
 
@@ -158,15 +165,16 @@ def detalha_ordem(request, pk, template_name='ordens/detalha_ordem.html'):
 @login_required
 def encerra_ordem(request, pk, template_name='ordens/encerra_ordem.html'):
     ordem = get_object_or_404(Compromisso, pk = pk)
-    if request.method == 'POST':
+    ordem.situacao = 2
+    ordem.save()
+    """ if request.method == 'POST':
         ordem_form = CompromissoForm(request.POST, instance= ordem)
-        ordem_form.fields['situacao'] = ('2','Encerrada')
         if ordem_form.is_valid():
             ordem_form.save()
             return redirect('dashboard')
     else:
-        ordem_form = CompromissoForm(instance= ordem)
-    return render(request, template_name, {'ordem':ordem})
+       ordem_form = CompromissoForm(instance= ordem)"""
+    return HttpResponseRedirect('/dashboard/dashboard')
 
 
 # Rotina para efetuar login

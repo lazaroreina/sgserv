@@ -1,0 +1,39 @@
+{%extends 'base.html'%}
+
+{%block title%}
+Consulta de ordens
+{%endblock%}
+
+{%block content%}
+<table class="ordens">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Data</th>
+            <th>Hora Agendamento</th>
+            <th>Cliente</th>
+            <th>Tipo</th>
+            <th>Descrição</th>
+            <th>Equipamentos</th>
+            <th>Situação</th>
+            <th>Ação</th>
+        </tr>
+    </thead>
+    <tbody>
+        {%for ordem in ordens%}
+        <tr>
+            <td>{{ordem.id}}</td>
+            <td>{{ordem.data}}</td>
+            <td>{{ordem.hora}}</td>
+            <td>{{ordem.cliente}}</td>
+            <td>{{ordem.tipo}}</td>
+            <td>{{ordem.descricao}}</td>
+            <td>{{ordem.equipamentos}}</td>
+            <td>{{ordem.situacao}}</td>
+            <td></td>
+        </tr>
+        {%endfor%}
+
+    </tbody>
+</table>
+{%endblock%}

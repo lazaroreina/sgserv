@@ -24,7 +24,7 @@ Dashboard
                     </thead>
                     <tbody>
                         {% for ordem in compromisso%}
-                        {%if ordem.situacao != "('2', 'Encerrada')"%}
+                        {%if ordem.situacao != "2"%}
                         <tr class="tr-ordens">
                             <td><a href="{%url 'detalha_ordem' ordem.pk%}">{{ordem.id}}</a></td>
                             <td>{{ordem.descricao}}</td>
