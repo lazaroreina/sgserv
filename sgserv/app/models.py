@@ -15,10 +15,24 @@ class Endereco(models.Model):
         return (self.logradouro)
 
 class Cliente(models.Model):
+
+    NATUREZA_CHOICES = [
+        ('0', 'Pessoa Física'),
+        ('1', 'Pessoa Jurídica'),
+    ]
+    SITUACAO_CHOICES = [ 
+        ('0', 'Ativo'),
+        ('1', 'Inativo'),
+        ('2', 'Bloqueado'),
+    ]
     nome = models.CharField(max_length=30)
-    telefone = models.BigIntegerField()
+    natureza = models.CharField(max_length=1, choices= NATUREZA_CHOICES)
+    cadastro_fiscal = models.CharField(max_length=16, default="0000000000000000")
+    telefone = models.CharField(max_length= 14)
     email = models.EmailField()
     endereco = models.ForeignKey(Endereco, on_delete=CASCADE)
+    data_cadastro = models.DateField()
+    situacao = models.CharField(max_length=1, choices= SITUACAO_CHOICES)
    
     def __str__(self):
         return self.nome

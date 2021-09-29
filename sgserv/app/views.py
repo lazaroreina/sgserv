@@ -15,7 +15,7 @@ class ClienteForm(ModelForm):
     class Meta: 
         model = Cliente
         fields = [ 
-            'nome', 'telefone', 'email', 'endereco',
+            'nome', 'natureza','cadastro_fiscal','telefone', 'email', 'endereco','data_cadastro','situacao',
         ]
 
 # Criando classe de formulário de endereços
